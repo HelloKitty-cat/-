@@ -29,7 +29,7 @@
   export default {}
 </script>
 
-<style lang="less" >
+<style lang="less" scoped>
   @import "../../common/stylus/mixins";
   .footer{
     position: fixed;
@@ -40,6 +40,7 @@
     width: 100%;
     height: 100/@rem;
     z-index: 100;
+    border-top: 1px solid #ccc;
     .footer-nav{
       width: 100%;
       height: 100%;

@@ -46,7 +46,7 @@
   }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   @import "../../common/stylus/mixins";
   .header{
     position: fixed;
