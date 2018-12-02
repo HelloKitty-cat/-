@@ -29,3 +29,23 @@ export const reqPolicyDescList =() =>ajax('/policyDescList')
 
 // item 下左右侧的数据
 export const reqCategoryL1List = () => ajax('/categoryL1List')
+
+// topic下的banner
+export const reqTopicBanner = () => ajax('/topicBanner')
+
+//topic banner 下的list
+export const reqColumn = () => ajax('/column')
+
+//识物 为你推荐下的list
+export const reqRecommendOne = () => ajax('/recommendOne')
+
+//识物 为你推荐下的list items
+export const reqRecommendTwo = () => ajax('/recommendTwo')
+
+//识物 为你推荐下的list items
+export const reqRecommendThree = () => ajax('/recommendThree')
+
+// 识物 下的严选臻品
+export const reqZhenOne = () => ajax('/zhenOne')
+export const reqZhenTwo = () => ajax('/zhenTwo')
+export const reqZhenThree = () => ajax('/zhenThree')

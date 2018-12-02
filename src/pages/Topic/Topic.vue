@@ -9,30 +9,85 @@
       </div>
     </header>
     <div class="MoveContent">
+      <div class="content">
         <div class="topic">
           <div class="swiper-container">
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img src="https://yanxuan.nosdn.127.net/9c9bbc692ff2b98e729a67ecca003dff.jpg" alt="">
+              <div class="swiper-slide" v-for="(item,index) in banner" :key="index">
+                <img v-lazy="item.picUrl" alt="">
+                <div class="mask">
+                  <div class="maskTop">
+                    <span class="maskLines"></span>
+                    <span>{{item.subTitle}}</span>
+                    <span class="maskLines"></span>
+                  </div>
+                  <span class="maskMiddle">{{item.title}}</span>
+                  <span class="maskBottom">{{item.desc}}</span>
+                </div>
               </div>
-              <div class="swiper-slide">slider2</div>
-              <div class="swiper-slide">slider3</div>
             </div>
           </div>
         </div>
+        <div class="topicList">
+          <div class="swiper-container-list">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" v-for="(list,index) in column" :key="index">
+                <img v-lazy="list.picUrl" alt="">
+                <div class="tNum">{{list.articleCount}}</div>
+                <p>{{list.title}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <TopicRecommend />
+        <TenClock />
+        <TopicYanxuan />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import Swiper from 'swiper'
+  import BScroll from 'better-scroll'
+  import {mapState} from 'vuex'
+  import TopicRecommend from '../../components/TopicRecommend/TopicRecommend'
+  import TenClock from '../../components/TenClock/TenClock'
+  import TopicYanxuan from '../../components/TopicYanxuan/TopicYanxuan'
   export default {
+    computed: {
+      ...mapState(['banner','column'])
+    },
     mounted () {
-      new Swiper('.swiper-container', {
-        slidesPerView : 1,
-        spaceBetween : 20,
-        loop : true,
+      this.$store.dispatch('reqTopicBanner',() =>{
+        this.$nextTick(() =>{
+          new Swiper('.swiper-container', {
+            slidesPerView: 1.15,
+            centeredSlides: true,
+            loop: true,
+            spaceBetween: 20,
+          })
+        })
+      });
+
+      this.$store.dispatch('reqColumn',() =>{
+        this.$nextTick(() =>{
+          new Swiper('.swiper-container-list',{
+            slidesPerView : 3.8,
+            spaceBetween : 20,
+          })
+        })
       })
+
+      new BScroll('.MoveContent',{
+        click: true
+      })
+    },
+    components: {
+      TopicRecommend,
+      TenClock,
+      TopicYanxuan
     }
   }
 </script>
@@ -85,24 +140,101 @@
       }
     }
     .MoveContent{
-      margin-top: 88/@rem;
       width: 100%;
-      height: 100%;
+      height: 1334/@rem - 88/@rem - 100/@rem;
+      .content{
+        padding-bottom: 100/@rem;
+        width: 100%;
+      }
       .topic{
         width: 100%;
         height: 385/@rem;
         background: #fff;
-        padding: 24/@rem 0;
+        padding: 100/@rem 0 20/@rem 0;
         .swiper-container{
           width: 100%;
           height: 100%;
           background: #fff;
             .swiper-slide{
-              background: pink;
+              box-sizing: border-box;
+              text-align: center;
+              position: relative;
               img{
                 width: 100%;
+                height: 100%;
+                border-radius: 8px;
+              }
+              .mask{
+                width: 466/@rem;
+                height: 198/@rem;
+                background: rgba(255,255,255,0.9);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -233/@rem;
+                margin-top: -99/@rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                .maskTop {
+                  width: 100%;
+                  font-size: 20/@rem;
+                  color: #7f7f7f;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  .maskLines{
+                    display: block;
+                    width: 24/@rem;
+                    height: 1/@rem;
+                    background: #7f7f7f;
+                    margin: 8/@rem;
+                  }
+                }
+                .maskMiddle{
+                  font-size: 32/@rem;
+                  color: #333;
+                  font-weight: bold;
+                  margin-top: 16/@rem;
+                  margin-bottom: 16/@rem;
+                }
+                .maskBottom{
+                  font-size: 24/@rem;
+                  color: #333;
+                }
               }
             }
+          }
+      }
+      .topicList{
+        background: #fff;
+        height: 220/@rem;
+        padding: 32/@rem 0 20/@rem 30/@rem;
+        .swiper-container-list{
+          height: 100%;
+          .swiper-slide{
+            position: relative;
+            img{
+              width: 164/@rem;
+              height: 164/@rem;
+              vertical-align: middle;
+            }
+            .tNum{
+              font-size: 24/@rem;
+              color: #fff;
+              position: absolute;
+              top: 0;
+              right: 18/@rem;
+            }
+            p{
+              font-size: 24/@rem;
+              color: #333;
+              text-align: center;
+              margin-top: 10/@rem;
+            }
+          }
+
         }
       }
     }

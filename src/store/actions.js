@@ -8,7 +8,12 @@ import {
   REQ_POPULARITEMLIST,
   REQ_TAGLIST,
   REQ_POLICYDESCLIST,
-  REQ_CATEGORYL1LIST
+  REQ_CATEGORYL1LIST,
+  REQ_TOPICBANNER,
+  REQ_COLUMN,
+  REQ_RECOMMENDONE,
+  REQ_RECOMMENDITEMS,
+  REQ_TENFIFTEEN
 } from './mutations-Type'
 import {
   reqData,
@@ -20,7 +25,13 @@ import {
   reqPopularItemList,
   reqTagList,
   reqPolicyDescList,
-  reqCategoryL1List
+  reqCategoryL1List,
+  reqTopicBanner,
+  reqColumn,
+  reqRecommendOne,
+  reqRecommendThree,
+  reqRecommendTwo,
+  reqTenfifteen
 } from '../api'
 
 export default {
@@ -90,5 +101,42 @@ export default {
       commit(REQ_CATEGORYL1LIST,{categoryL1List: categoryL1List.categoryL1List})
       typeof cb === 'function' && cb()
     }
-  }
+  },
+  async reqTopicBanner ({commit},cb) {
+    const banner = await reqTopicBanner();
+    if (banner.code === 0){
+      commit(REQ_TOPICBANNER,{banner: banner.banner})
+      typeof cb === 'function' && cb()
+    }
+  },
+  async reqColumn ({commit},cb) {
+    const column = await reqColumn();
+    if (column.code === 0){
+      commit(REQ_COLUMN,{column: column.column})
+      typeof cb === 'function' && cb()
+    }
+  },
+  async reqRecommendOne ({commit}) {
+    const recommendOne = await reqRecommendOne();
+    if (recommendOne.code === 0){
+      commit(REQ_RECOMMENDONE,{recommendOne: recommendOne.recommendOne})
+    }
+  },
+  async reqRecommendItems ({commit}) {
+    const recommendTwo = await reqRecommendTwo();
+    const recommendThree = await reqRecommendThree();
+
+    if (recommendTwo.code === 0 && recommendThree.code === 0){
+      commit(REQ_RECOMMENDITEMS,{recommendTwo: recommendTwo.recommendTwo,recommendThree:recommendThree.recommendThree})
+    }
+  },
+
+  async reqTenfifteen ({commit},cb) {
+    const tenfifteen = await reqTenfifteen();
+    if (tenfifteen.code === 0){
+      commit(REQ_TENFIFTEEN,{tenfifteen: tenfifteen.tenfifteen})
+      typeof cb === 'function' && cb()
+    }
+  },
 }
+

@@ -10,4 +10,11 @@ export default {
   tagList: [], // 品牌下的: list
   policyDescList: [], //banner下的list
   categoryL1List: [], // item下的数据
+  banner: [], //topic 下的banner
+  column: [], // topic banner下的list
+  recommendOne: {}, // topic 为你推荐
+  recommendItems: [], // topic 下的items
+  tenfifteen: [], // 识物下的 tenfifteen
+  zhenOne: {}, // 严选臻品 上半部分
+  zhenItems: [], // 严选臻品 items
 }
