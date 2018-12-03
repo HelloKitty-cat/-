@@ -29,7 +29,7 @@
     <div class="thirdWrap" v-show="$route.path === '/login'">
       <div class="itemWrap">
         <span><i class="iconfont icon-QQ"></i></span>
-        <span>微信</span>
+        <span>QQ</span>
       </div>
       <div class="itemWrap">
         <span><i class="iconfont icon-WeChat"></i></span>
@@ -37,7 +37,7 @@
       </div>
       <div class="itemWrap">
         <span><i class="iconfont icon-weibo"></i></span>
-        <span>微信</span>
+        <span>微博</span>
       </div>
     </div>
 
@@ -84,11 +84,12 @@
         top: 50%;
         transform: translate(-50%,-50%);
         display: inline-block;
-        width: 172/@rem;
-        height: 54/@rem;
+        width: 2.29333rem;
+        height: 0.72rem;
         background: url("../../common/images/icons.png");
         background-repeat: no-repeat;
-        background-position-y: -126/@rem;
+        background-position-y: -1.70667rem;
+        background-size: 2.29333rem 5.30667rem;
       }
       .icon-sousuo{
         right: 120/@rem;

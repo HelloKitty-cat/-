@@ -139,11 +139,12 @@
           top: 50%;
           transform: translate(-50%,-50%);
           display: inline-block;
-          width: 172/@rem;
-          height: 54/@rem;
+          width: 2.29333rem;
+          height: 0.72rem;
           background: url("../../common/images/icons.png");
           background-repeat: no-repeat;
-          background-position-y: -126/@rem;
+          background-position: 0 -1.70667rem;
+          background-size: 2.29333rem 5.30667rem;
         }
         .icon-sousuo{
           right: 120/@rem;

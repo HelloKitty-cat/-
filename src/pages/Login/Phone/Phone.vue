@@ -2,7 +2,8 @@
   <div class="login_content">
     <section class="login_message">
       <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
-      <button disabled="disabled" class="get_verification">获取验证码</button>
+      <button @click="getCode" :disabled="isShow" :class="{on: isShow}"
+              class="get_verification">{{isShow ? `还有${CountDown}秒` : '获取验证码'}}</button>
     </section>
     <section class="login_verification">
       <input type="tel" maxlength="8" placeholder="验证码" v-model="number">
@@ -19,26 +20,71 @@
 </template>
 
 <script>
+  import { Toast } from 'mint-ui';
   export default {
     data() {
       return {
         phone: '',
         number: '',
-        hint: ''
+        hint: '',
+        isShow: false,  //默认显示黑色
+        CountDown: 30
       }
     },
     methods: {
       loginTo () {
         const {phone,number} = this;
-        if(!(/^1[34578]\d{9}$/.test(phone))){
-         this.hint = '手机号码或验证码有误，请重填';
-        }else if (!(/^\d{4}$/).test(number)) {
-          this.hint = '手机号码或验证码有误，请重填';
-        }else{
-          this.hint = '正确';
-        }
-      }
 
+        if (!phone){
+          this.hint = '手机号不能为空';
+          Toast({
+            message: '手机号不能为空',
+            position: 'middle',
+            duration: 2000
+          });
+        }else if(!(/^1[34578]\d{9}$/.test(phone))){
+          this.hint = '手机号有误，请重填';
+          Toast({
+            message: '手机号有误',
+            position: 'middle',
+            duration: 2000
+          });
+        } else if (!number){
+          this.hint = '验证码不能为空';
+          Toast({
+            message: '验证码不能为空',
+            position: 'middle',
+            duration: 2000
+          });
+        }else if (!(/^\d{4}$/).test(number)) {
+          this.hint = '验证码有误，请重填';
+          Toast({
+            message: '验证码有误',
+            position: 'middle',
+            duration: 2000
+          });
+        }else{
+          this.hint = '';
+          Toast({
+            message: '登录成功',
+            position: 'middle',
+            duration: 2000
+          });
+        }
+      },
+      getCode () {
+        let num = 30;
+        this.isShow = true;
+        console.log('123456');
+        this.timer = setInterval(() => {
+          num--;
+          if (num === 0){
+            clearInterval(this.timer)
+            this.isShow = false;
+          }
+          this.CountDown = num;
+        },1000)
+      }
     }
   }
 </script>
@@ -81,6 +127,9 @@
         background: none;
         outline: none;
         border: none;
+      }
+      .on{
+        color: #999;
       }
     }
     .login_verification{
