@@ -34,4 +34,8 @@ export const REQ_ZHENONE = 'req_zhenone'
 
 export const REQ_ZHENITEMS = 'req_zhenitems'
 
+export const REQ_YXLOOK = 'req_yxlook'
+
+export const REQ_FINDMORE = 'req_findmore'
+
 

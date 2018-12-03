@@ -17,4 +17,6 @@ export default {
   tenfifteen: [], // 识物下的 tenfifteen
   zhenOne: {}, // 严选臻品 上半部分
   zhenItems: [], // 严选臻品 items
+  yxLook: {} , // 严选LOOK
+  findMore: [], // more数据
 }

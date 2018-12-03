@@ -1,17 +1,17 @@
 <template>
   <div class="recommend">
-    <h3 class="title">{{recommendOne.typeName}}</h3>
+    <h3 class="title">{{zhenOne.typeName}}</h3>
     <div class="itemMajor">
-      <img v-lazy="recommendOne.picUrl" alt="">
+      <img v-lazy="zhenOne.picUrl" alt="">
       <div class="info">
         <div class="infoTop">
-          <span class="left">{{recommendOne.title}}</span>
-          <span class="right">{{recommendOne.priceInfo}}元起</span>
+          <span class="left">{{zhenOne.title}}</span>
+          <span class="right">{{zhenOne.priceInfo}}元起</span>
         </div>
-        <p class="ellipsis">{{recommendOne.subTitle}}</p>
+        <p class="ellipsis">{{zhenOne.subTitle}}</p>
       </div>
 
-      <div class="items" v-for="(item,index) in recommendItems" :key="index">
+      <div class="items" v-for="(item,index) in zhenItems" :key="index">
         <div class="itemLeft">
           <p class="ellipsis">{{item.title}}</p>
           <p class="ellipsis">{{item.subTitle}}</p>
@@ -29,10 +29,11 @@
   import {mapState} from 'vuex'
   export default {
     computed: {
-
+      ...mapState(['zhenOne','zhenItems'])
     },
     mounted () {
-
+      this.$store.dispatch('reqZhenOne')
+      this.$store.dispatch('reqZhenItems')
     }
   }
 </script>

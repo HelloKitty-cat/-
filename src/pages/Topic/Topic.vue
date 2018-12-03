@@ -2,16 +2,16 @@
   <div class="topicWrap">
     <header class="topicHeader">
       <div class="topicContent">
-        <span><i class="iconfont icon-shouye"></i></span>
+        <span @click="$router.replace('/home')"><i class="iconfont icon-shouye"></i></span>
         <span class="title"></span>
-        <span><i class="iconfont icon-sousuo"></i></span>
-        <span><i class="iconfont icon-gouwuche"></i></span>
+        <span @click="$router.replace('/search')"><i class="iconfont icon-sousuo"></i></span>
+        <span @click="$router.replace('/cart')"><i class="iconfont icon-gouwuche"></i></span>
       </div>
     </header>
     <div class="MoveContent">
       <div class="content">
         <div class="topic">
-          <div class="swiper-container">
+          <div class="swiper-container-banner">
             <div class="swiper-wrapper">
               <div class="swiper-slide" v-for="(item,index) in banner" :key="index">
                 <img v-lazy="item.picUrl" alt="">
@@ -39,11 +39,15 @@
             </div>
           </div>
         </div>
-
         <TopicRecommend />
         <TenClock />
         <TopicYanxuan />
+        <TopicLook />
+        <TopicMore />
       </div>
+    </div>
+    <div class="goTop" @click="goTop">
+      <span><i class="iconfont icon-arrow-up"></i></span>
     </div>
   </div>
 </template>
@@ -55,6 +59,8 @@
   import TopicRecommend from '../../components/TopicRecommend/TopicRecommend'
   import TenClock from '../../components/TenClock/TenClock'
   import TopicYanxuan from '../../components/TopicYanxuan/TopicYanxuan'
+  import TopicLook from '../../components/TopicLook/TopicLook'
+  import TopicMore from '../../components/TopicMore/TopicMore'
   export default {
     computed: {
       ...mapState(['banner','column'])
@@ -62,7 +68,7 @@
     mounted () {
       this.$store.dispatch('reqTopicBanner',() =>{
         this.$nextTick(() =>{
-          new Swiper('.swiper-container', {
+          new Swiper('.swiper-container-banner', {
             slidesPerView: 1.15,
             centeredSlides: true,
             loop: true,
@@ -77,17 +83,25 @@
             slidesPerView : 3.8,
             spaceBetween : 20,
           })
+          this.scroll = new BScroll('.MoveContent',{
+            click: true
+          })
         })
       })
 
-      new BScroll('.MoveContent',{
-        click: true
-      })
+
     },
     components: {
       TopicRecommend,
       TenClock,
-      TopicYanxuan
+      TopicYanxuan,
+      TopicLook,
+      TopicMore
+    },
+    methods: {
+      goTop () {
+        this.scroll.scrollTo(0,0,1000)
+      }
     }
   }
 </script>
@@ -151,7 +165,7 @@
         height: 385/@rem;
         background: #fff;
         padding: 100/@rem 0 20/@rem 0;
-        .swiper-container{
+        .swiper-container-banner{
           width: 100%;
           height: 100%;
           background: #fff;
@@ -237,6 +251,27 @@
 
         }
       }
+    }
+    .goTop{
+      width: 80/@rem;
+      height: 80/@rem;
+      background: #fff;
+      border-radius: 50%;
+      text-align: center;
+      position: fixed;
+      bottom: 120/@rem;
+      right: 20/@rem;
+      z-index: 5;
+      span{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        .icon-arrow-up{
+          font-size: 40/@rem;
+        }
+      }
+
     }
   }
 </style>

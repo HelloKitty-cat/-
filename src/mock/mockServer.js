@@ -40,14 +40,14 @@ Mock.mock('/recommendTwo', {code:0, recommendTwo: shiwu_data.recommendTwo})
 Mock.mock('/recommendThree', {code:0, recommendThree: shiwu_data.recommendThree})
 // 识物 tenfifteen
 Mock.mock('/tenfifteen', {code:0, tenfifteen: shiwu_data.tenfifteen})
-
 // 识物 下臻品list
 Mock.mock('/zhenOne', {code:0, zhenOne: shiwu_data.zhenOne})
 Mock.mock('/zhenTwo', {code:0, zhenTwo: shiwu_data.zhenTwo})
 Mock.mock('/zhenThree', {code:0, zhenThree: shiwu_data.zhenThree})
-
-
-
+// 识物 下的严选LOOK
+Mock.mock('/yxLook', {code:0, yxLook: shiwu_data.yxLook})
+// 识物 下的more
+Mock.mock('/findMore', {code:0, findMore: shiwu_data.findMore})
 //返回detail页数据的接口
 Mock.mock('/detail', {code:0, detail: shiwu_data})
 //返回分类页nav数据

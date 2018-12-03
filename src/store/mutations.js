@@ -15,7 +15,9 @@ import {
   REQ_RECOMMENDITEMS,
   REQ_TENFIFTEEN,
   REQ_ZHENITEMS,
-  REQ_ZHENONE
+  REQ_ZHENONE,
+  REQ_YXLOOK,
+  REQ_FINDMORE
 } from './mutations-Type'
 
 export default {
@@ -73,5 +75,11 @@ export default {
     if (state.zhenItems.length === 0){
       state.zhenItems.push(zhenTwo,zhenThree)
     }
+  },
+  [REQ_YXLOOK] (state,{yxLook}) {
+    state.yxLook = yxLook
+  },
+  [REQ_FINDMORE] (state,{findMore}) {
+    state.findMore = findMore
   }
 }

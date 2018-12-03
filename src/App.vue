@@ -1,6 +1,12 @@
 <template>
   <div class="wrap">
-    <router-view />
+
+        <transition name="fade">
+          <keep-alive>
+          <router-view />
+          </keep-alive>
+        </transition>
+
     <HomeFooter />
   </div>
 </template>
@@ -14,11 +20,16 @@
   }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .wrap{
     width: 100%;
     height: 100%;
-
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 300ms;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 
 </style>

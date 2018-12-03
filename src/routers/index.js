@@ -5,6 +5,10 @@ import Item from '../pages/Item/Item'
 import Topic from '../pages/Topic/Topic'
 import Cart from '../pages/Cart/Cart'
 import Login from '../pages/Login/Login'
+import Search from '../pages/Search/Search'
+
+import Phone from '../pages/Login/Phone/Phone'
+import Email from '../pages/Login/Email/Email'
 
 Vue.use(VueRouter);
 
@@ -28,7 +32,21 @@ export default new VueRouter({
     },
     {
       path: '/login',
-      component: Login
+      component: Login,
+      children: [
+        {
+          path: '/login/phone',
+          component: Phone
+        },
+        {
+          path: '/login/email',
+          component: Email
+        }
+      ]
+    },
+    {
+      path: '/search',
+      component: Search
     },
     {
       path: '',

@@ -3,12 +3,12 @@
    <div class="headerContent">
      <a class="headerLogo"></a>
      <div class="headerSearchContent">
-       <div class="headerSearch">
+       <div class="headerSearch" @click="$router.push('/search')">
          <span><i class="iconfont icon-sousuo"></i></span>
          <span>搜索商品,共9771款好物</span>
        </div>
      </div>
-     <a href="javascript:;" class="headerBtn">登录</a>
+     <a href="javascript:;" class="headerBtn" @click="$router.push('/login')">登录</a>
    </div>
     <div class="navContent">
       <ul class="navList">

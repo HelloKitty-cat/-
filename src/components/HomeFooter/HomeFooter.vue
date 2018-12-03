@@ -1,23 +1,23 @@
 <template>
- <Footer class="footer">
+ <Footer class="footer" v-show="$route.path === '/home' || $route.path === '/item' ||  $route.path === '/topic' || $route.path === '/cart'">
    <nav class="footer-nav">
-     <router-link to="/home" :class="{active: $route.path === '/home'}">
+     <router-link to="/home" replace :class="{active: $route.path === '/home'}">
        <span><i class="iconfont icon-shouye"></i></span>
        <span>首页</span>
      </router-link>
-     <router-link to="/item" :class="{active: $route.path === '/item'}">
+     <router-link to="/item" replace :class="{active: $route.path === '/item'}">
        <span><i class="iconfont icon-category"></i></span>
        <span>分类</span>
      </router-link>
-     <router-link to="/topic" :class="{active: $route.path === '/topic'}">
+     <router-link to="/topic" replace :class="{active: $route.path === '/topic'}">
        <span><i class="iconfont icon-cubelifangti"></i></span>
        <span>识物</span>
      </router-link>
-     <router-link to="/cart" :class="{active: $route.path === '/cart'}">
+     <router-link to="/cart" replace :class="{active: $route.path === '/cart'}">
        <span><i class="iconfont icon-gouwuche"></i></span>
        <span>购物车</span>
      </router-link>
-     <router-link to="/login" :class="{active: $route.path === '/login'}">
+     <router-link to="/login" replace :class="{active: $route.path === '/login'}">
        <span><i class="iconfont icon-geren"></i></span>
        <span>个人</span>
      </router-link>

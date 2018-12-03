@@ -2,7 +2,7 @@
     <div class="home">
       <HomeHeader />
       <div class="contentWrap">
-        <div class="content">
+        <div class="content"  ref="wrap">
           <div class="swiper-container">
             <div class="swiper-wrapper">
               <div class="swiper-slide" v-for="(list,index) in focusList" :key="index">
@@ -10,7 +10,7 @@
               </div>
             </div>
             <!-- 如果需要分页器 -->
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination" ref="pagination"></div>
           </div>
 
           <div class="grow">
@@ -34,8 +34,6 @@
               <span><i class="iconfont icon-yuanjiantou"></i></span>
             </div>
           </div>
-
-
           <div class="swiper-container-image">
             <div class="swiper-wrapper">
               <div class="swiper-slide"  v-for="(top,index) in topicList" :key="index">
@@ -52,12 +50,20 @@
           <HomeItems />
         </div>
       </div>
+      <div class="goTop" @click="goTop">
+        <span><i class="iconfont icon-arrow-up"></i></span>
+      </div>
+      <div class="gift">
+        <span><i class="iconfont icon-liwu"></i></span>
+      </div>
+      <Activity />
     </div>
 
 
 </template>
 
 <script>
+  import Activity from '../../components/Activity/Activity'
   import HomeHeader from '../../components/HomeHeader/HomeHeader'
   import HomeItems from '../../components/HomeItems/HomeItems'
   import HomeNewsItems from '../../components/homeNewsItems/homeNewsItems'
@@ -74,13 +80,10 @@
       HomeHeader,
       HomeItems,
       HomeNewsItems,
-      brandContainer
+      brandContainer,
+      Activity
     },
     mounted () {
-      new BScroll('.contentWrap',{
-        click: true
-      })
-
       //nav导航
       this.$store.dispatch('reqData');
       //banner数据
@@ -112,10 +115,22 @@
               slideShadows : true
             },
           })
+
         });
       });
       //banner下的list
-      this.$store.dispatch('reqPolicyDescList')
+      this.$store.dispatch('reqPolicyDescList',() =>{
+        this.$nextTick(() =>{
+          this.srcoll = new BScroll('.contentWrap',{
+            click: true
+          })
+        })
+      })
+    },
+    methods: {
+      goTop () {
+        this.srcoll.scrollTo(0,0,1000)
+      }
     }
   }
 </script>
@@ -126,15 +141,59 @@
     .home {
       width: 100%;
       margin-bottom: 100/@rem;
+      .goTop{
+        width: 80/@rem;
+        height: 80/@rem;
+        background: #fff;
+        border-radius: 50%;
+        text-align: center;
+        position: fixed;
+        bottom: 120/@rem;
+        right: 20/@rem;
+        z-index: 5;
+        span{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          .icon-arrow-up{
+            font-size: 40/@rem;
+          }
+        }
+
+      }
+      .gift{
+        width: 110/@rem;
+        height: 80/@rem;
+        background: #fff;
+        position: fixed;
+        bottom: 230/@rem;
+        right: 0;
+        border-radius: 45/@rem 0 0 45/@rem;
+        border: 1px solid #ccc;
+        border-right: none;
+        span{
+          display: flex;
+          height: 100%;
+          align-items: center;
+          justify-content: center;
+        }
+        .icon-liwu{
+          font-size: 45/@rem;
+          color: #B4282D;
+        }
+      }
       .contentWrap{
         width: 100%;
         height: 1334/@rem - 148/@rem;
-        padding-bottom: 150/@rem;
+        margin-top: 148/@rem;
         box-sizing: border-box;
+        .content{
+          padding-bottom: 120/@rem;
+        }
       }
       .swiper-container {
         height: 400/@rem;
-        padding-top: 148/@rem;
         img {
           width: 100%;
           height: 100%;

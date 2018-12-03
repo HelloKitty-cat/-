@@ -29,7 +29,7 @@
       this.$store.dispatch('reqTenfifteen', ()=>{
         this.$nextTick(() => {
           new Swiper('.swiper-container',{
-            slidesPerView : 1.2,
+            slidesPerView : 1.1,
             spaceBetween : 20,
           })
         })
@@ -38,7 +38,7 @@
   }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   @import "../../common/stylus/mixins";
 
   .TenWrap{

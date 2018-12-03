@@ -2,7 +2,7 @@
   <div class="item">
     <div class="headerWrap">
       <div class="header">
-        <div class="headerSearch">
+        <div class="headerSearch" @click="$router.push('/search')">
           <span><i class="iconfont icon-sousuo"></i></span>
           <span>搜索商品, 共9723款好物</span>
         </div>
@@ -19,7 +19,7 @@
 
       <div class="right">
         <div class="rightWrap">
-          <img v-if="categoryL1List[checkNum]" :src="categoryL1List[checkNum].wapBannerUrl" alt="">
+          <img v-if="categoryL1List[checkNum]" v-lazy="categoryL1List[checkNum].wapBannerUrl" :key="categoryL1List[checkNum].wapBannerUrl"  alt="">
           <div class="title">
             <span class="lines"></span>
             <span v-if="categoryL1List[checkNum]">{{categoryL1List[checkNum].name}}</span>
@@ -30,7 +30,7 @@
           <ul class="contentWrap" v-if="categoryL1List[checkNum]">
             <li v-for="(item,index) in categoryL1List[checkNum].subCateList" :key="index">
               <a href="javascript:;">
-                <img :src="item.wapBannerUrl" alt="">
+                <img v-lazy="item.wapBannerUrl" :key="item.wapBannerUrl" alt="">
                 <span class="ellipsis">{{item.name}}</span>
               </a>
             </li>

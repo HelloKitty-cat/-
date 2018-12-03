@@ -45,7 +45,14 @@ export const reqRecommendTwo = () => ajax('/recommendTwo')
 //识物 为你推荐下的list items
 export const reqRecommendThree = () => ajax('/recommendThree')
 
+export const reqTenfifteen = () => ajax('/tenfifteen')
+
 // 识物 下的严选臻品
 export const reqZhenOne = () => ajax('/zhenOne')
 export const reqZhenTwo = () => ajax('/zhenTwo')
 export const reqZhenThree = () => ajax('/zhenThree')
+
+//  识物 下的yxLook
+export const reqYxLook = () => ajax('/yxLook')
+//   识物 下的more
+export const reqFindMore = () => ajax('/findMore')

@@ -13,7 +13,11 @@ import {
   REQ_COLUMN,
   REQ_RECOMMENDONE,
   REQ_RECOMMENDITEMS,
-  REQ_TENFIFTEEN
+  REQ_TENFIFTEEN,
+  REQ_ZHENONE,
+  REQ_ZHENITEMS,
+  REQ_YXLOOK,
+  REQ_FINDMORE
 } from './mutations-Type'
 import {
   reqData,
@@ -31,7 +35,12 @@ import {
   reqRecommendOne,
   reqRecommendThree,
   reqRecommendTwo,
-  reqTenfifteen
+  reqTenfifteen,
+  reqZhenOne,
+  reqZhenThree,
+  reqZhenTwo,
+  reqYxLook,
+  reqFindMore
 } from '../api'
 
 export default {
@@ -89,10 +98,11 @@ export default {
       typeof cb === 'function' && cb();
     }
   },
-  async reqPolicyDescList ({commit}){
+  async reqPolicyDescList ({commit},cb){
     const policyDescList = await reqPolicyDescList();
     if (policyDescList.code === 0){
       commit(REQ_POLICYDESCLIST,{policyDescList: policyDescList.policyDescList})
+      typeof cb === 'function' && cb();
     }
   },
   async reqCategoryL1List ({commit},cb) {
@@ -136,6 +146,31 @@ export default {
     if (tenfifteen.code === 0){
       commit(REQ_TENFIFTEEN,{tenfifteen: tenfifteen.tenfifteen})
       typeof cb === 'function' && cb()
+    }
+  },
+  async reqZhenOne ({commit}) {
+    const zhenOne = await reqZhenOne();
+    if (zhenOne.code === 0){
+      commit(REQ_ZHENONE,{zhenOne: zhenOne.zhenOne})
+    }
+  },
+  async reqZhenItems ({commit}) {
+    const zhenTwo = await reqZhenTwo();
+    const zhenThree = await reqZhenThree();
+    if (zhenTwo.code === 0 && zhenThree.code === 0){
+      commit(REQ_ZHENITEMS,{zhenTwo:zhenTwo.zhenTwo,zhenThree:zhenThree.zhenThree})
+    }
+  },
+  async reqYxLook ({commit}) {
+    const yxLook = await reqYxLook();
+    if (yxLook.code === 0){
+      commit(REQ_YXLOOK,{yxLook: yxLook.yxLook})
+    }
+  },
+  async reqFindMore ({commit}) {
+    const findMore = await reqFindMore();
+    if (findMore.code === 0){
+      commit(REQ_FINDMORE,{findMore: findMore.findMore})
     }
   },
 }
